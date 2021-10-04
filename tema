@@ -1,0 +1,31 @@
+def get_temp(x,t1,t2):
+    if t1=="C":
+        if t2=="K":
+            return x+273.15
+        else:
+            return (x*1.8)+32
+    elif t1=="F":
+        if t2=="C":
+            return (x-32)*(5//9)
+        else:
+            return (x-32)*(5//9)+273.15
+    else:
+        if t2=="C":
+            return x-273.15
+        else:
+            return (x-273.15)*(9//5)+32
+
+def get_cmmmc(lst):
+    d=0
+    c=0
+    for i in lst:
+        a=i
+        while (i != 0):
+            r = d % i
+            d = i
+            i = r
+        c = c * a / d
+
+    return c
+
+
