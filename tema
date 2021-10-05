@@ -1,4 +1,11 @@
 def get_temp(x,t1,t2):
+    '''
+    Transforma un tip de grade in alt tip de grade
+    :param x: Numarul de grade
+    :param t1: Tipul in care sunt gradele
+    :param t2: Tipul in care trebuie sa se transforme gradele
+    :return: Returneaza numarul de grade in tipul dat, t2
+    '''
     if t1=="C":
         if t2=="K":
             return x+273.15
@@ -6,26 +13,50 @@ def get_temp(x,t1,t2):
             return (x*1.8)+32
     elif t1=="F":
         if t2=="C":
-            return (x-32)*(5//9)
+            return (x-32)*(5/9)
         else:
-            return (x-32)*(5//9)+273.15
+            return (x-32)*(5/9)+273.15
     else:
         if t2=="C":
             return x-273.15
         else:
-            return (x-273.15)*(9//5)+32
+            return x*(9/5)-459.67
+
+def cmmdc(x,y):
+    d = x
+    i = y
+    while i > 0:
+        r = d % i
+        d = i
+        i = r
+    return d
 
 def get_cmmmc(lst):
+    '''
+    Calculeaza cmmmc a n numere
+    :param lst: Lista cu numere date
+    :return: cmmmc
+    '''
     d=0
-    c=0
+    c=1
     for i in lst:
-        a=i
-        while (i != 0):
-            r = d % i
-            d = i
-            i = r
-        c = c * a / d
+        c = c*i//cmmdc(c,i)
 
     return c
+
+def test_get_temp():
+    assert get_temp(20,"C","K") == 293.15
+    assert get_temp(20, "C", "F") == 68
+    assert get_temp(300, "F", "C") == 148.88888888888889
+    assert get_temp(300, "K", "F") == 80.32999999999998
+
+def test_get_cmmmc():
+    assert  get_cmmmc(lst=[1,2,3,4,5]) == 60
+    assert get_cmmmc(lst=[2,3,4]) == 12
+    assert get_cmmmc(lst=[12,24,2]) == 24
+    assert get_cmmmc(lst=[15,5,20]) ==  60
+
+print(test_get_temp())
+print(test_get_cmmmc())
 
 
