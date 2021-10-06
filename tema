@@ -99,6 +99,10 @@ def main():
 
     while True:
 
+        print(test_get_cmmmc())
+        print(test_get_temp())
+        print(test_get_largest_prime_below())
+
         print("1.Determina numarul de grade dintr-un tip dat in alt tip dat.")
         print("2.Determina cmmmc a n numere.")
         print("3.Determina ultimul număr prim mai mic decât un număr dat")
